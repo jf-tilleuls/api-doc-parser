@@ -25,7 +25,7 @@ function guessNameFromUrl(url: string, entrypointUrl: string): string {
 /**
  * Finds the description of the class with the given id.
  */
-function findSupportedClass(docs: Doc[], classToFind: string): Class {
+export function findSupportedClass(docs: Doc[], classToFind: string): Class {
   const supportedClasses = get(
     docs,
     '[0]["http://www.w3.org/ns/hydra/core#supportedClass"]'
@@ -68,7 +68,7 @@ export function getDocumentationUrlFromHeaders(headers: Headers): string {
 /**
  * Retrieves Hydra's entrypoint and API docs.
  */
-async function fetchEntrypointAndDocs(
+export async function fetchEntrypointAndDocs(
   entrypointUrl: string,
   options: RequestInitExtended = {}
 ): Promise<{
@@ -118,7 +118,7 @@ async function fetchEntrypointAndDocs(
   };
 }
 
-function removeTrailingSlash(url: string): string {
+export function removeTrailingSlash(url: string): string {
   if (url.endsWith("/")) {
     url = url.slice(0, -1);
   }
@@ -126,7 +126,7 @@ function removeTrailingSlash(url: string): string {
   return url;
 }
 
-function findRelatedClass(docs: Doc[], property: RdfProperty): Class {
+export function findRelatedClass(docs: Doc[], property: RdfProperty): Class {
   // Use the entrypoint property's owl:equivalentClass if available
   if (Array.isArray(property["http://www.w3.org/2000/01/rdf-schema#range"])) {
     for (const range of property[
